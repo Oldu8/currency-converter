@@ -1,0 +1,25 @@
+.wrapper {
+  width: 45vw;
+  padding: 1rem;
+  margin: 0 auto;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 2rem;
+  min-height: 13rem;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+}
+
+.title {
+  text-align: center;
+}
+.equal {
+  font-weight: 700;
+  font-size: 3rem;
+}

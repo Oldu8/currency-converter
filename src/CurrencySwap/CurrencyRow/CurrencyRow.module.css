@@ -1,0 +1,18 @@
+.input {
+  border: 1px solid rgb(10, 20, 110);
+  border-radius: 0.35rem;
+  padding: 0.5rem;
+}
+
+.select {
+  border: 1px solid rgb(10, 20, 110);
+  border-radius: 0.35rem;
+  padding: 0.5rem;
+}
+
+.item {
+  display: flex;
+  flex-flow: column nowrap;
+  min-height: 5rem;
+  justify-content: space-between;
+}

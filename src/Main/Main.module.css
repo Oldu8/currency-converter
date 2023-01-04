@@ -1,0 +1,7 @@
+.wrapper {
+  max-width: 60vw;
+  background-color: #fcf6f5ff;
+  margin: 0 auto;
+  min-height: 90vh;
+  padding: 1.5rem 0;
+}
