@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./CurrencyRow.module.css";
+import styles from "./CurrencyItem.module.css";
 
-function CurrencyRow({ options, defaultCurrency, onChangeCurrency }) {
+function CurrencyItem({ options, defaultCurrency, onChangeCurrency }) {
   return (
     <div className={styles.item}>
       <select
@@ -22,4 +22,4 @@ function CurrencyRow({ options, defaultCurrency, onChangeCurrency }) {
   );
 }
 
-export default CurrencyRow;
+export default CurrencyItem;

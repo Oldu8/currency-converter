@@ -2,17 +2,20 @@
   border: 1px solid rgb(10, 20, 110);
   border-radius: 0.35rem;
   padding: 0.5rem;
+  min-width: 15rem;
 }
 
 .select {
   border: 1px solid rgb(10, 20, 110);
   border-radius: 0.35rem;
   padding: 0.5rem;
+  min-width: 15rem;
+  margin-bottom: 2rem;
 }
 
 .item {
   display: flex;
   flex-flow: column nowrap;
-  min-height: 5rem;
+  padding: 0 3rem;
   justify-content: space-between;
 }

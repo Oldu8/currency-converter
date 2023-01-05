@@ -5,3 +5,39 @@
   min-height: 90vh;
   padding: 1.5rem 0;
 }
+
+.container {
+  width: 45vw;
+  padding: 1rem;
+  margin: 0 auto;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 2rem;
+  min-height: 13rem;
+  align-items: center;
+}
+
+.swapWindow {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  align-items: center;
+}
+
+.title {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+.equal {
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}
+
+.currencyIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.5rem;
+}
