@@ -4,16 +4,44 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [options, setOptions] = useState([]);
-  const [fromCurrency, setFromCurrency] = useState("USD");
-  const [toCurrency, setToCurrency] = useState("UAH");
-  // const [amountPrimary, setAmountPrimary] = useState(1);
-  // const [amountSecondary, setAmountSecondary] = useState(true);
+  const [fromCurrency, setFromCurrency] = useState();
+  const [toCurrency, setToCurrency] = useState();
+  const [rates, setRates] = useState();
+  const [amountPrimary, setAmountPrimary] = useState(1);
+  const [amountSecondary, setAmountSecondary] = useState(true);
+
+  let toAmount, fromAmount;
+  if (amountSecondary) {
+    fromAmount = amountPrimary;
+    toAmount = amountPrimary * rates;
+  } else {
+    toAmount = amountPrimary;
+    fromAmount = amountPrimary / rates;
+  }
 
   const api = "https://api.exchangerate.host/latest";
+  console.log(rates);
+
+  function onChangeFromAmount(e) {
+    setAmountPrimary(e.target.value);
+    setAmountSecondary(true);
+  }
+
+  function onChangeToAmount(e) {
+    setAmountPrimary(e.target.value);
+    setAmountSecondary(false);
+  }
+
   useEffect(() => {
     fetch(api)
       .then((res) => res.json())
-      .then((data) => setOptions([data.base, ...Object.keys(data.rates)]));
+      .then((data) => {
+        const currencyArr = Object.keys(data.rates);
+        setOptions([data.base, ...currencyArr]);
+        setFromCurrency(data.base);
+        setToCurrency(currencyArr[0]);
+        setRates(Object.values(data.rates)[0]);
+      });
   }, []);
 
   return (
@@ -25,6 +53,10 @@ function App() {
         toCurrency={toCurrency}
         setFromCurrency={setFromCurrency}
         setToCurrency={setToCurrency}
+        toAmount={toAmount}
+        fromAmount={fromAmount}
+        onChangeFromAmount={onChangeFromAmount}
+        onChangeToAmount={onChangeToAmount}
       >
         Pam Param
       </Main>

@@ -10,6 +10,10 @@ function main({
   fromCurrency,
   setFromCurrency,
   setToCurrency,
+  toAmount,
+  fromAmount,
+  onChangeFromAmount,
+  onChangeToAmount,
 }) {
   return (
     <section className="main">
@@ -24,6 +28,8 @@ function main({
               options={options}
               defaultCurrency={fromCurrency}
               onChangeCurrency={(e) => setFromCurrency(e.target.value)}
+              amount={fromAmount}
+              onChangeAmount={onChangeFromAmount}
             />
             <span className={styles.equal}>
               <img src={rotateSolid} />
@@ -32,6 +38,8 @@ function main({
               options={options}
               defaultCurrency={toCurrency}
               onChangeCurrency={(e) => setToCurrency(e.target.value)}
+              amount={toAmount}
+              onChangeAmount={onChangeToAmount}
             />
           </div>
         </div>

@@ -1,7 +1,13 @@
 import React from "react";
 import styles from "./CurrencyItem.module.css";
 
-function CurrencyItem({ options, defaultCurrency, onChangeCurrency }) {
+function CurrencyItem({
+  options,
+  defaultCurrency,
+  onChangeCurrency,
+  amount,
+  onChangeAmount,
+}) {
   return (
     <div className={styles.item}>
       <select
@@ -17,7 +23,12 @@ function CurrencyItem({ options, defaultCurrency, onChangeCurrency }) {
           );
         })}
       </select>
-      <input type="number" className={styles.input} />
+      <input
+        type="number"
+        className={styles.input}
+        value={amount}
+        onChange={onChangeAmount}
+      />
     </div>
   );
 }
