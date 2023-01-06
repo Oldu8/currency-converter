@@ -1,13 +1,19 @@
 .wrapper {
-  max-width: 60vw;
+  max-width: 65vw;
   background-color: #fcf6f5ff;
   margin: 0 auto;
   min-height: 90vh;
   padding: 1.5rem 0;
+  @media (max-width: 1024px) {
+    min-width: 70vw;
+  }
+  @media (max-width: 768px) {
+    max-width: initial;
+  }
 }
 
 .container {
-  width: 45vw;
+  max-width: 55vw;
   padding: 1rem;
   margin: 0 auto;
   background-color: white;
@@ -15,6 +21,16 @@
   border-radius: 2rem;
   min-height: 13rem;
   align-items: center;
+  @media (max-width: 1024px) {
+    max-width: 70vw;
+  }
+  @media (max-width: 768px) {
+    max-width: 60vw;
+  }
+  @media (max-width: 425px) {
+    max-width: initial;
+    padding: 0;
+  }
 }
 
 .swapWindow {
@@ -23,6 +39,10 @@
   justify-content: space-between;
   padding-top: 1.5rem;
   align-items: center;
+  @media (max-width: 768px) {
+    flex-flow: column nowrap;
+    padding: 1rem 0.3rem;
+  }
 }
 
 .title {
