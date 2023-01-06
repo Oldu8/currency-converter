@@ -24,8 +24,7 @@ function CurrencyItem({
         })}
       </select>
       <input
-        pattern="\d*"
-        maxLength="100000"
+        type="number"
         className={styles.input}
         value={amount}
         onChange={onChangeAmount}

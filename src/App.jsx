@@ -3,7 +3,6 @@ import Main from "./Main/Main";
 import { useEffect, useState } from "react";
 import { favoriteCurrencyArr } from "./assets/favoireteCurrencyArr";
 import {
-  numberFormat,
   financialRound,
   onChangeFromAmount,
   onChangeToAmount,
@@ -21,15 +20,25 @@ function App() {
 
   let toAmount, fromAmount;
   if (amountSecondary) {
-    fromAmount = numberFormat(amountPrimary);
-    toAmount = numberFormat(amountPrimary * rates);
+    fromAmount = amountPrimary;
+    toAmount = financialRound(amountPrimary * rates);
   } else {
-    toAmount = numberFormat(amountPrimary);
-    fromAmount = numberFormat(amountPrimary / rates);
+    toAmount = amountPrimary;
+    fromAmount = financialRound(amountPrimary / rates);
   }
 
   const api = "https://api.exchangerate.host/latest";
   const base_url = "https://api.exchangerate.host/convert";
+
+  function onChangeFromAmount(e) {
+    setAmountPrimary(e.target.value);
+    setAmountSecondary(true);
+  }
+
+  function onChangeToAmount(e) {
+    setAmountPrimary(e.target.value);
+    setAmountSecondary(false);
+  }
 
   useEffect(() => {
     fetch(`${base_url}?from=EUR&to=UAH`)
@@ -54,14 +63,14 @@ function App() {
         );
         setFromCurrency(data.base);
         setToCurrency("UAH");
-        setRates(Object.values(filtredObj)[uahCurIndex]);
+        setRates(financialRound(Object.values(filtredObj)[uahCurIndex]));
       });
   }, []);
 
   useEffect(() => {
     fetch(`${base_url}?from=${fromCurrency}&to=${toCurrency}`)
       .then((res) => res.json())
-      .then((data) => setRates(data.info.rate));
+      .then((data) => setRates(financialRound(data.info.rate)));
   }, [fromCurrency, toCurrency]);
 
   return (

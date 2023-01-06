@@ -3,7 +3,6 @@ import { favoriteCurrencyArr } from "../assets/favoireteCurrencyArr";
 export function financialRound(x) {
 	return Number.parseFloat(x).toFixed(2);
 }
-export const numberFormat = new Intl.NumberFormat("en-IN").format;
 
 const api = "https://api.exchangerate.host/latest";
 const base_url = "https://api.exchangerate.host/convert";
