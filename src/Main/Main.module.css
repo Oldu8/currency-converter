@@ -31,9 +31,8 @@
   margin-bottom: 1.5rem;
 }
 .equal {
-  width: 2rem;
-  height: 2rem;
-  cursor: pointer;
+  font-weight: 700;
+  font-size: 3rem;
 }
 
 .currencyIcon {

@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./Main.module.css";
 import CurrencyItem from "./CurrencyItem/CurrencyItem";
-import rotateSolid from "../assets/rotateSolid.svg";
 import currencyIcon from "../assets/currencyIcon.svg";
 
 function main({
@@ -31,9 +30,7 @@ function main({
               amount={fromAmount}
               onChangeAmount={onChangeFromAmount}
             />
-            <span className={styles.equal}>
-              <img src={rotateSolid} />
-            </span>
+            <span className={styles.equal}>=</span>
             <CurrencyItem
               options={options}
               defaultCurrency={toCurrency}
