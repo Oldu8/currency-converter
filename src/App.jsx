@@ -2,16 +2,12 @@ import Header from "./Header/Header";
 import Main from "./Main/Main";
 import { useEffect, useState } from "react";
 import { favoriteCurrencyArr } from "./assets/favoireteCurrencyArr";
-import {
-  financialRound,
-  onChangeFromAmount,
-  onChangeToAmount,
-} from "./services/functions";
+import { financialRound } from "./services/functions";
 
 function App() {
-  const [options, setOptions] = useState([]);
-  const [fromCurrency, setFromCurrency] = useState();
-  const [toCurrency, setToCurrency] = useState();
+  const [options, setOptions] = useState(favoriteCurrencyArr);
+  const [fromCurrency, setFromCurrency] = useState("EUR");
+  const [toCurrency, setToCurrency] = useState("UAH");
   const [rates, setRates] = useState();
   const [amountPrimary, setAmountPrimary] = useState(1);
   const [amountSecondary, setAmountSecondary] = useState(true);
@@ -27,7 +23,6 @@ function App() {
     fromAmount = financialRound(amountPrimary / rates);
   }
 
-  const api = "https://api.exchangerate.host/latest";
   const base_url = "https://api.exchangerate.host/convert";
 
   function onChangeFromAmount(e) {
@@ -43,28 +38,13 @@ function App() {
   useEffect(() => {
     fetch(`${base_url}?from=EUR&to=UAH`)
       .then((res) => res.json())
-      .then((data) => setEurToUah(financialRound(data.info.rate)));
+      .then((data) => {
+        setEurToUah(financialRound(data.info.rate));
+        setRates(financialRound(data.info.rate));
+      });
     fetch(`${base_url}?from=USD&to=UAH`)
       .then((res) => res.json())
       .then((data) => setUsdToUah(financialRound(data.info.rate)));
-
-    fetch(api)
-      .then((res) => res.json())
-      .then((data) => {
-        const filtredObj = Object.keys(data.rates)
-          .filter((key) => favoriteCurrencyArr.includes(key))
-          .reduce((obj, key) => {
-            obj[key] = data.rates[key];
-            return obj;
-          }, {});
-        setOptions([...Object.keys(filtredObj)]);
-        const uahCurIndex = Object.keys(filtredObj).findIndex(
-          (cur) => cur === "UAH"
-        );
-        setFromCurrency(data.base);
-        setToCurrency("UAH");
-        setRates(financialRound(Object.values(filtredObj)[uahCurIndex]));
-      });
   }, []);
 
   useEffect(() => {
